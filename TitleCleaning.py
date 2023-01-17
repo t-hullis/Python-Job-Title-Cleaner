@@ -9,21 +9,20 @@ job_titles = {
 }
 
 # TEST JOBS
-job1= "Customer Success Manager"
-job2= "MM"
+test_job_title = "MM"
 
 for key, value in job_titles.items():
-    if job2 in value:
-        print(f"{job2} belongs to key: {key}")
+    if test_job_title in value:
+        print(f"{test_job_title} belongs to key: {key}")
+        test_job_title = key
 
 
-
+print(test_job_title)
 
 # if job not in job_titles:
-    """
-    Here you could send an email to sales ops manager, notifying them to add 
-    this new job title to list of job titles or to the job title acronyms, 
-    as it has never been seen before.
-    Could look into replacing this with a simple machine learning model?
-
-    """
+"""
+Here you could send an email to sales ops manager, notifying them to add 
+this new job title to list of job titles or to the job title acronyms, 
+as it has never been seen before.
+Could look into replacing this with a simple machine learning model?
+"""
