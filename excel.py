@@ -3,20 +3,62 @@ from openpyxl import Workbook, load_workbook
 wb = load_workbook("Titles.xlsx")
 ws = wb.active
 
-# Define the list of strings to check for
-strings_to_check = ['Manager']
+departments = ["Management","Finance","Operations", "IT", "I.T",
+ "Product","Support","HR","Sales","Marketing"]
+
+personas = ["Founder","Owner","CSuit", "Managing Director",
+"Director","VP","Manager","Accounting",'controller',"accounting","accountant",
+"Finance","Legal"]
 
 
 # Initialize a variable to keep track of the number of matching cells
 matching_cells = 0
 
-# Iterate through the rows in column A
-for row in ws['A']:
-    # Check if the cell value is in the list of strings
-    if row.value in strings_to_check:
-        matching_cells += 1
-        print(row.value)
-        print(row.coordinate)
+managers= 0
+
+persons = 0
+
+for department in departments:
+    # Iterate through the rows in column A
+    for row in ws['A']:
+        # Define the list of strings to check for
+        strings_to_check = department    
+        count = row.value.count(strings_to_check)
+        managers = managers + count
+        if count == 1:
+            # row.coordinate data type is string
+            print(row.coordinate)
+            print(row.value)
+            ws[f"D{row.coordinate[1:]}"] = department
+            
+
+for persona in personas:
+    # Iterate through the rows in column A
+    for row in ws['A']:
+        # Define the list of strings to check for
+        strings_to_check = persona   
+        count = row.value.count(strings_to_check)
+        persons = persons + count
+        if count==1:
+            print(f"persona..{row.coordinate}")
+            print(f"persona..{row.value}")
+            ws[f"C{row.coordinate[1:]}"] = persona
+
+# Iterate through all rows in column C and D, starting from the second row
+for row in range(2, ws.max_row + 1):
+    # Get the value in cell C and D
+    value_c = ws.cell(row=row, column=3).value
+    if type(value_c) != type("x"):
+        value_c = "_"
+    value_d = ws.cell(row=row, column=4).value
+    if type(value_d) != type("x"):
+        value_d = "_"
+    # set the value in column B 
+    ws.cell(row=row, column=2).value = value_d + " " + value_c 
+
 
 # Print the number of matching cells
-print(f"{matching_cells} cells in column A contain a string from the list")
+print(f"{managers} Manager Titles")
+print(f"{persons} Personas")
+
+wb.save('Titles.xlsx')
