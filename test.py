@@ -19,10 +19,12 @@ for key, value in job_titles.items():
 
 print(test_job_title)
 
-# if job not in job_titles:
 """
-Here you could send an email to sales ops manager, notifying them to add 
+Under here you could set up code to send an email to sales ops manager, notifying them to add 
 this new job title to list of job titles or to the job title acronyms, 
 as it has never been seen before.
 Could look into replacing this with a simple machine learning model?
 """
+if test_job_title in job_titles.values():
+    print("nooo")
+
