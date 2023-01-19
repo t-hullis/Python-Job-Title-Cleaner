@@ -2,10 +2,11 @@ from openpyxl import Workbook, load_workbook
 """Work Book"""
 wb = load_workbook("Titles.xlsx")
 ws = wb.active
+# Initialize a variable to keep track of the number of matching cells
+managers= 0
+persons = 0
 
-"""
-both departments and personas dictoanries can both be easily edited
-"""
+# both departments and personas dictoanries can both be easily edited
 departments = {
     "Management": ["Management","CEO","CTO","General Manager", "Founders","Owner", "Director"],
     "Finance":["Finance"],
@@ -33,11 +34,6 @@ personas = {
     "Legal": ["Legal"]
     }
 
-
-# Initialize a variable to keep track of the number of matching cells
-matching_cells = 0
-managers= 0
-persons = 0
 
 # Finds department key words in database
 for key, values in departments.items():
