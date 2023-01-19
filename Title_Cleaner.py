@@ -28,7 +28,7 @@ personas = {
     "Accounting": ["Accounting","Controller", "accounting", "accountant"],
     "Manager": ["Manager"],
     "Finance": ["Finance"],
-    "Finance":["Finance"]
+    "Legal": ["Legal"]
     }
 
 
@@ -79,7 +79,10 @@ for row in range(2, ws.max_row + 1):
     if type(value_d) != type("string"):
         value_d = "_"
     # set the value in column B 
-    ws.cell(row=row, column=2).value = value_d + " " + value_c 
+    if value_c != value_d:
+        ws.cell(row=row, column=2).value = value_d + " " + value_c 
+    else:
+        ws.cell(row=row, column=2).value = value_c 
 
 
 # Print the number of matching cells
