@@ -1,0 +1,1 @@
+could create another for loop checking for important pre fixes like comercial, insurance 
